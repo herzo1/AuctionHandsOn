@@ -1,4 +1,2 @@
-org\herzig\SecondaryController.class
-org\herzig\App.class
+org\herzig\auction\control\App.class
 module-info.class
-org\herzig\PrimaryController.class

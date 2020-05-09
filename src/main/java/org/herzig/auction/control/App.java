@@ -14,9 +14,9 @@ import java.io.IOException;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/primary.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Parent root = FXMLLoader.load(getClass().getResource("/AdministrationView.fxml"));
+        stage.setScene(new Scene(root));
+        stage.setTitle("Auction Administration");
         stage.show();
     }
 
