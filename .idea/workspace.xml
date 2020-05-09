@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bb55dd6d-fd5d-40c2-b054-b0ac9f49af6c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1bfgNZ8QXc2iEWqPWwz4uFxTVsr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2735632" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HEO\IdeaProjects\AuctionHandsOn\src\main\resources" />
+    </key>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bb55dd6d-fd5d-40c2-b054-b0ac9f49af6c" name="Default Changelist" comment="" />
+      <created>1589028522406</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589028522406</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="755" y="303" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589029522592">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="755" y="303" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1589029522592" />
+    <state x="805" y="311" key="FileChooserDialogImpl" timestamp="1589028977308">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="805" y="311" key="FileChooserDialogImpl/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1589028977308" />
+    <state width="2005" height="313" key="GridCell.Tab.0.bottom" timestamp="1589029378538">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="313" key="GridCell.Tab.0.bottom/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1589029378538" />
+    <state width="2005" height="313" key="GridCell.Tab.0.center" timestamp="1589029378538">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="313" key="GridCell.Tab.0.center/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1589029378538" />
+    <state width="2005" height="313" key="GridCell.Tab.0.left" timestamp="1589029378538">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="313" key="GridCell.Tab.0.left/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1589029378538" />
+    <state width="2005" height="313" key="GridCell.Tab.0.right" timestamp="1589029378538">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="313" key="GridCell.Tab.0.right/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1589029378538" />
+    <state x="505" y="131" key="SettingsEditor" timestamp="1589029035524">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="505" y="131" key="SettingsEditor/-1920.0.1920.1030/2560.0.1920.1040/0.0.2048.1112@0.0.2048.1112" timestamp="1589029035524" />
+  </component>
+</project>
