@@ -7,8 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.herzig.auction.control.helper.View;
+import org.herzig.auction.control.helper.ViewHelper;
 import org.herzig.auction.model.Auction;
-import org.herzig.auction.model.Bid;
 import org.herzig.auction.model.NoBidAvailableException;
 
 import java.io.IOException;
@@ -34,13 +34,9 @@ public class AuctionController extends BaseController {
 
      @FXML
      public void addBidder() throws IOException {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource(View.LOGIN_VIEW));
-         Parent root = loader.load();
-         ((LoginController)loader.getController()).setAuction(this.auction);
-         Stage stage = new Stage();
-         stage.setScene(new Scene(root));
-         stage.setTitle("Login");
-         stage.show();
+         ViewHelper view = new ViewHelper(View.LOGIN_VIEW);
+         ((LoginController)view.getController()).setAuction(auction);
+         view.showView();
      }
 
      @FXML

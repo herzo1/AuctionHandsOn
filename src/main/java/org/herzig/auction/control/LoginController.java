@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.herzig.auction.control.helper.View;
+import org.herzig.auction.control.helper.ViewHelper;
 import org.herzig.auction.model.Auction;
 import org.herzig.auction.model.AuctionSystem;
 import org.herzig.auction.model.User;
@@ -31,16 +32,13 @@ public class LoginController extends BaseController {
             if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
                 User user = AuctionSystem.getInstance().login(username, password);
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(View.BIDDER_VIEW));
-                Parent root = loader.load();
-                ((BidderController)loader.getController()).setAuction(this.auction);
-                ((BidderController)loader.getController()).setBidder(user);
+                ViewHelper view = new ViewHelper(View.BIDDER_VIEW);
 
-                // todo: create stage setup helper
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setTitle(user.getUserName());
-                stage.show();
+                BidderController controller = ((BidderController)view.getController());
+                controller.setAuction(auction);
+                controller.setBidder(user);
+
+                view.showView();
 
                 close();
             }

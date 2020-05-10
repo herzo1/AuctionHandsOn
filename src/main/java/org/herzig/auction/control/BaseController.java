@@ -1,6 +1,7 @@
 package org.herzig.auction.control;
 
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import org.herzig.auction.model.Auction;
 import org.herzig.auction.model.AuctionObserver;
 

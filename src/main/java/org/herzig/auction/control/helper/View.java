@@ -1,9 +1,28 @@
 package org.herzig.auction.control.helper;
 
-public final class View {
-    public static final String ADMINISTRATION_VIEW = "/AdministrationView.fxml";
-    public static final String AUCTION_VIEW = "/AuctionView.fxml";
-    public static final String BIDDER_VIEW = "/BidderView.fxml";
-    public static final String LOGIN_VIEW = "/LoginView.fxml";
+import org.herzig.auction.control.*;
+import org.herzig.auction.model.Bid;
 
+public enum View {
+    ADMINISTRATION_VIEW("/AdministrationView.fxml", "Auction Administration"),
+    AUCTION_VIEW("/AuctionView.fxml", "Auction"),
+    BIDDER_VIEW("/BidderView.fxml", "Bidder"),
+    LOGIN_VIEW("/LoginView.fxml", "Login");
+
+    private String viewPath;
+    private String viewTitle;
+
+
+    private View(String viewPath, String viewTitle){
+        this.viewPath = viewPath;
+        this.viewTitle = viewTitle;
+    }
+
+    public String getViewPath() {
+        return this.viewPath;
+    }
+
+    public String getViewTitle() {
+        return this.viewTitle;
+    }
 }

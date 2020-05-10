@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import org.herzig.auction.control.helper.View;
+import org.herzig.auction.control.helper.ViewHelper;
 import org.herzig.auction.model.Auction;
 import org.herzig.auction.model.AuctionObserver;
 import org.herzig.auction.model.AuctionSystem;
@@ -36,14 +37,9 @@ public class AdministrationController implements AuctionObserver {
         Auction auction = new Auction(item);
         auction.addObserver(this);
 
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(View.AUCTION_VIEW));
-        Parent root = loader.load();
-        ((AuctionController)loader.getController()).setAuction(auction);
-
-        stage.setScene(new Scene(root));
-        stage.setTitle("Auction");
-        stage.show();
+        ViewHelper view = new ViewHelper(View.AUCTION_VIEW);
+        ((AuctionController)view.getController()).setAuction(auction);
+        view.showView();
 
         auction.start();
     }
