@@ -10,11 +10,11 @@ public class Auction {
     private class Ticker extends Thread {
         @Override
         public void run() {
-            while (!Auction.this.getRemainingTime().isNegative() && !isInterrupted()) {
+            while (Auction.this.hasTimeLeft() && !isInterrupted()) {
                 try {
                     Thread.sleep(1000);
                     synchronized (Auction.this) {
-                        if(Auction.this.getRemainingTime().isNegative()) {
+                        if(!Auction.this.hasTimeLeft()) {
                             Auction.this.status = Status.TERMINATED;
                         }
                     }
@@ -83,18 +83,18 @@ public class Auction {
     }
 
     public synchronized void start() {
-        if(this.status != Status.CREATED) {
+        if(!isCreated()) {
             throw new IllegalStateException("Auction is not in status CREATED");
         }
         this.status = Status.RUNNING;
-        this.endTime = LocalDateTime.now().plusMinutes(Auction.DURATION);
+        calculateEndTime();
         ticker.start();
         notifyObservers();
 
     }
 
     public synchronized void stop() {
-        if(this.status == Status.RUNNING) {
+        if(isRunning()) {
             this.ticker.interrupt();
             this.status = Status.TERMINATED;
             notifyObservers();
@@ -130,5 +130,13 @@ public class Auction {
 
     public synchronized boolean isTerminated() {
         return this.status == Status.TERMINATED;
+    }
+
+    private boolean hasTimeLeft() {
+        return !getRemainingTime().isNegative();
+    }
+
+    private void calculateEndTime() {
+        this.endTime = LocalDateTime.now().plusMinutes(Auction.DURATION);
     }
 }
