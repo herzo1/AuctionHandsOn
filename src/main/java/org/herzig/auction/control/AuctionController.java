@@ -46,20 +46,39 @@ public class AuctionController extends BaseController {
      public void setAuction(Auction auction) {
          this.auction = auction;
          this.auction.addObserver(this);
-         this.itemLbl.setText(auction.getItem().toString());
+         setItemLabel(auction);
      }
 
     @Override
     void handleUpdate(Auction auction) {
+         setEndTimeLabel(auction);
+         setRemainingTimeLabel(auction);
+         setCurrentBidLabel(auction);
+    }
+
+    private void setItemLabel(Auction auction) {
+        this.itemLbl.setText(auction.getItem().toString());
+    }
+
+    private void setEndTimeLabel(Auction auction) {
         this.endTimeLbl.setText(auction.getEndTime().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")));
-        String remainingTime = String.format("%d days, %d hours, %d minutes, %d seconds",
-                auction.getRemainingTime().toDays(), auction.getRemainingTime().toHoursPart(),
-                auction.getRemainingTime().toMinutesPart(), auction.getRemainingTime().toSecondsPart());
-        this.remainingTimeLbl.setText(remainingTime);
+    }
+
+    private void setRemainingTimeLabel(Auction auction) {
+        this.remainingTimeLbl.setText(getStringForRemainingTime(auction));
+    }
+
+    private void setCurrentBidLabel(Auction auction) {
         try{
             this.currentBidLbl.setText(auction.getCurrentBid().toString());
         } catch (NoBidAvailableException e) {
             this.currentBidLbl.setText("---");
         }
+    }
+
+    private String getStringForRemainingTime(Auction auction) {
+         return String.format("%d days, %d hours, %d minutes, %d seconds",
+                 auction.getRemainingTime().toDays(), auction.getRemainingTime().toHoursPart(),
+                 auction.getRemainingTime().toMinutesPart(), auction.getRemainingTime().toSecondsPart());
     }
 }
