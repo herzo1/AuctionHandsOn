@@ -55,7 +55,7 @@ public class LoginController extends BaseController {
 
     @Override
     void handleUpdate(Auction auction) {
-        if(this.auction.getStatus() == Auction.Status.TERMINATED) {
+        if(auction.getStatus() == Auction.Status.TERMINATED) {
             close();
         }
     }

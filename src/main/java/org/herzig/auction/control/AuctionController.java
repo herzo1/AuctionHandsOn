@@ -56,7 +56,7 @@ public class AuctionController extends BaseController {
 
     @Override
     void handleUpdate(Auction auction) {
-        this.endTimeLbl.setText(this.auction.getEndTime().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")));
+        this.endTimeLbl.setText(auction.getEndTime().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")));
         String remainingTime = String.format("%d days, %d hours, %d minutes, %d seconds",
                 auction.getRemainingTime().toDays(), auction.getRemainingTime().toHoursPart(),
                 auction.getRemainingTime().toMinutesPart(), auction.getRemainingTime().toSecondsPart());

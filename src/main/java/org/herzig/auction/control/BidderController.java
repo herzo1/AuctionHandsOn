@@ -110,9 +110,9 @@ public class BidderController extends BaseController {
 
     @Override
     void handleUpdate(Auction auction) {
-        if(this.auction.getStatus() == Auction.Status.RUNNING) {
+        if(auction.getStatus() == Auction.Status.RUNNING) {
             updateCurrentBidLbl();
-        } else if(this.auction.getStatus() == Auction.Status.TERMINATED) {
+        } else if(auction.getStatus() == Auction.Status.TERMINATED) {
             this.placeBitBtn.setDisable(true);
             if(this.robot != null) {
                 this.robot.stop();
