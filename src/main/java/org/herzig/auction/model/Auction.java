@@ -119,6 +119,8 @@ public class Auction {
             if(bid.getAmount() < item.getMinimumPrice()) {
                 throw new InvalidBidException("Amount must be equal or higher than minimun price.");
             }
+            this.bids.add(bid);
+            notifyObservers();
         }
     }
 }
