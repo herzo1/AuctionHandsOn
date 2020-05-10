@@ -37,7 +37,7 @@ public class AdministrationController implements AuctionObserver {
         auction.addObserver(this);
 
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(View.ACTION_VIEW));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(View.AUCTION_VIEW));
         Parent root = loader.load();
         ((AuctionController)loader.getController()).setAuction(auction);
 
