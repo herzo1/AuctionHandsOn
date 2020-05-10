@@ -72,7 +72,7 @@ public class BidderController extends BaseController {
         double amount = Double.parseDouble(amountStr);
         Bid bid = new Bid(this.bidder, amount);
         try{
-            auction.placeBid(bid);
+            this.auction.placeBid(bid);
         } catch (InvalidBidException e) {
             this.messageLbl.setText(e.getMessage());
         }
