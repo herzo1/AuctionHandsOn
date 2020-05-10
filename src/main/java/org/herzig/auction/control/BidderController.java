@@ -6,10 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.herzig.auction.model.Auction;
-import org.herzig.auction.model.Bid;
-import org.herzig.auction.model.InvalidBidException;
-import org.herzig.auction.model.User;
+import org.herzig.auction.model.*;
 import org.herzig.auction.model.robot.Eager;
 import org.herzig.auction.model.robot.Robot;
 import org.herzig.auction.model.robot.Strategy;
@@ -126,7 +123,7 @@ public class BidderController extends BaseController {
     private void updateCurrentBidLbl() {
         try {
             this.currentBidLbl.setText(this.auction.getCurrentBid().toString());
-        } catch (NullPointerException e) {
+        } catch (NoBidAvailableException e) {
             this.currentBidLbl.setText("---");
         }
     }

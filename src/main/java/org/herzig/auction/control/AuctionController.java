@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.herzig.auction.model.Auction;
 import org.herzig.auction.model.Bid;
+import org.herzig.auction.model.NoBidAvailableException;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -61,10 +62,9 @@ public class AuctionController extends BaseController {
                 auction.getRemainingTime().toDays(), auction.getRemainingTime().toHoursPart(),
                 auction.getRemainingTime().toMinutesPart(), auction.getRemainingTime().toSecondsPart());
         this.remainingTimeLbl.setText(remainingTime);
-        Bid currentBid = auction.getCurrentBid();
         try{
-            this.currentBidLbl.setText(currentBid.toString());
-        } catch (NullPointerException e) {
+            this.currentBidLbl.setText(auction.getCurrentBid().toString());
+        } catch (NoBidAvailableException e) {
             this.currentBidLbl.setText("---");
         }
     }

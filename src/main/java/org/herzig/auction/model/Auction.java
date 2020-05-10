@@ -65,12 +65,12 @@ public class Auction {
         return Duration.between(LocalDateTime.now(), this.endTime);
     }
 
-    /**
-     * @throws NullPointerException - if no bids are available
-     * @return current bid
-     */
-    public synchronized Bid getCurrentBid() {
-        return bids.get(bids.size()-1);
+    public synchronized Bid getCurrentBid() throws NoBidAvailableException {
+        try{
+            return bids.get(bids.size()-1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new NoBidAvailableException();
+        }
     }
 
     public void addObserver(AuctionObserver observer) {
@@ -115,7 +115,7 @@ public class Auction {
             }
             this.bids.add(bid);
             notifyObservers();
-        } catch (NullPointerException e) {
+        } catch (NoBidAvailableException e) {
             if(bid.getAmount() < item.getMinimumPrice()) {
                 throw new InvalidBidException("Amount must be equal or higher than minimun price.");
             }

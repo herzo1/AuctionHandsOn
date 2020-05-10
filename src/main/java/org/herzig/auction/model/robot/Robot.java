@@ -1,9 +1,6 @@
 package org.herzig.auction.model.robot;
 
-import org.herzig.auction.model.Auction;
-import org.herzig.auction.model.Bid;
-import org.herzig.auction.model.InvalidBidException;
-import org.herzig.auction.model.User;
+import org.herzig.auction.model.*;
 
 import java.util.Random;
 
@@ -35,7 +32,7 @@ public final class Robot implements Runnable {
                                 Bid bid = this.strategy.createBid(this.bidder, lastAmount);
                                 this.auction.placeBid(bid);
                             }
-                        } catch (NullPointerException e) {
+                        } catch (NoBidAvailableException e) {
                             // do nothing
                         }
 
