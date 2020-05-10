@@ -28,13 +28,17 @@ public final class Robot implements Runnable {
             try {
                 synchronized (this.auction) {
                     if (!this.auction.getStatus().equals(Auction.Status.TERMINATED)) {
-                        //todo: catch nullpointerexception
-                        Bid currentBid = this.auction.getCurrentBid();
-                        if (!currentBid.getBidder().equals(this.bidder)) {
-                            double lastAmount = currentBid.getAmount();
-                            Bid bid = this.strategy.createBid(this.bidder, lastAmount);
-                            this.auction.placeBid(bid);
+                        try {
+                            Bid currentBid = this.auction.getCurrentBid();
+                            if (!currentBid.getBidder().equals(this.bidder)) {
+                                double lastAmount = currentBid.getAmount();
+                                Bid bid = this.strategy.createBid(this.bidder, lastAmount);
+                                this.auction.placeBid(bid);
+                            }
+                        } catch (NullPointerException e) {
+                            // do nothing
                         }
+
                     }
                 }
                 Thread.sleep(sleepTime);
