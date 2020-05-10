@@ -9,6 +9,7 @@ import org.herzig.auction.control.helper.ViewHelper;
 import org.herzig.auction.model.Auction;
 import org.herzig.auction.model.AuctionSystem;
 import org.herzig.auction.model.User;
+import org.herzig.auction.model.robot.Strategy;
 
 import java.io.IOException;
 
@@ -24,29 +25,10 @@ public class LoginController extends BaseController {
     @FXML
     public void login() throws IOException {
         if (this.auction.isRunning()) {
-            String username = this.usernameTF.getText();
-            String password = this.passwordPF.getText();
-            if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
-                User user = AuctionSystem.getInstance().login(username, password);
-
-                ViewHelper view = new ViewHelper(View.BIDDER_VIEW);
-
-                BidderController controller = ((BidderController)view.getController());
-                controller.setAuction(auction);
-                controller.setBidder(user);
-
-                view.showView();
-
-                close();
-            }
+            loginUserAndOpenBidderView();
         } else {
             close();
         }
-    }
-
-    public void setAuction(Auction auction) {
-        this.auction = auction;
-        this.auction.addObserver(this);
     }
 
     @Override
@@ -54,6 +36,41 @@ public class LoginController extends BaseController {
         if(auction.isTerminated()) {
             close();
         }
+    }
+
+    private void loginUserAndOpenBidderView() throws IOException {
+        if (validateUserInput()) {
+            showBidderView(loginUser());
+            close();
+        }
+    }
+
+    private User loginUser(){
+        return AuctionSystem.getInstance().login(this.usernameTF.getText(), this.passwordPF.getText());
+    }
+
+    private void showBidderView(User user) throws IOException {
+        ViewHelper view = new ViewHelper(View.BIDDER_VIEW, user.getUserName());
+
+        BidderController controller = ((BidderController)view.getController());
+        controller.setAuction(auction);
+        controller.setBidder(user);
+
+        view.showView();
+    }
+
+    private boolean validateUserInput() {
+        return validateText(this.usernameTF.getText()) &&
+                validateText(this.passwordPF.getText());
+    }
+
+    private boolean validateText(String text) {
+        return text != null && !text.isEmpty();
+    }
+
+    public void setAuction(Auction auction) {
+        this.auction = auction;
+        this.auction.addObserver(this);
     }
 
     private void close() {
