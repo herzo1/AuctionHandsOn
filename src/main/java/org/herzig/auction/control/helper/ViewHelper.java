@@ -4,8 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.herzig.auction.control.BaseController;
-import org.herzig.auction.model.Auction;
 
 import java.io.IOException;
 
@@ -32,7 +30,7 @@ public class ViewHelper{
         this(view, view.getViewTitle());
     }
 
-    public void showView() throws IOException {
+    public void showView() {
         setupStage();
         this.stage.show();
     }
