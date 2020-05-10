@@ -29,14 +29,8 @@ public class AdministrationController implements AuctionObserver {
     @FXML
     public void handleStartAuction() throws IOException {
         this.startAuctionBtn.setDisable(true);
-        Item item = this.items.getSelectionModel().getSelectedItem();
-        Auction auction = new Auction(item);
-        auction.addObserver(this);
-
-        ViewHelper view = new ViewHelper(View.AUCTION_VIEW);
-        ((AuctionController)view.getController()).setAuction(auction);
-        view.showView();
-
+        Auction auction = setupNewAuction();
+        openAuctionView(auction);
         auction.start();
     }
 
@@ -52,5 +46,18 @@ public class AdministrationController implements AuctionObserver {
             auction.removeObserver(this);
         }
 
+    }
+
+    private Auction setupNewAuction() {
+        Item item = this.items.getSelectionModel().getSelectedItem();
+        Auction auction = new Auction(item);
+        auction.addObserver(this);
+        return auction;
+    }
+
+    private void openAuctionView(Auction auction) throws IOException {
+        ViewHelper view = new ViewHelper(View.AUCTION_VIEW);
+        ((AuctionController)view.getController()).setAuction(auction);
+        view.showView();
     }
 }
