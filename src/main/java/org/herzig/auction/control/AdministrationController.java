@@ -55,7 +55,7 @@ public class AdministrationController implements AuctionObserver {
 
     @Override
     public void update(Auction auction) {
-        if(auction.getStatus() == Auction.Status.TERMINATED) {
+        if(auction.isTerminated()) {
             this.startAuctionBtn.setDisable(false);
             auction.removeObserver(this);
         }

@@ -20,11 +20,11 @@ public final class Robot implements Runnable {
 
     @Override
     public void run() {
-        while (!Thread.currentThread().isInterrupted() && !this.auction.getStatus().equals(Auction.Status.TERMINATED)) {
+        while (!Thread.currentThread().isInterrupted() && !this.auction.isTerminated()) {
             int sleepTime = (5 + this.random.nextInt(10)) * 1000;
             try {
                 synchronized (this.auction) {
-                    if (!this.auction.getStatus().equals(Auction.Status.TERMINATED)) {
+                    if (!this.auction.isTerminated()) {
                         try {
                             Bid currentBid = this.auction.getCurrentBid();
                             if (!currentBid.getBidder().equals(this.bidder)) {

@@ -25,7 +25,7 @@ public class LoginController extends BaseController {
 
     @FXML
     public void login() throws IOException {
-        if (this.auction.getStatus() == Auction.Status.RUNNING) {
+        if (this.auction.isRunning()) {
             String username = this.usernameTF.getText();
             String password = this.passwordPF.getText();
             if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
@@ -56,7 +56,7 @@ public class LoginController extends BaseController {
 
     @Override
     void handleUpdate(Auction auction) {
-        if(auction.getStatus() == Auction.Status.TERMINATED) {
+        if(auction.isTerminated()) {
             close();
         }
     }

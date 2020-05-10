@@ -26,7 +26,7 @@ public class Auction {
         }
     }
 
-    public enum Status {
+    private enum Status {
         CREATED, RUNNING, TERMINATED;
     }
 
@@ -51,10 +51,6 @@ public class Auction {
 
     public Item getItem() {
         return this.item;
-    }
-
-    public synchronized Status getStatus() {
-        return this.status;
     }
 
     public synchronized LocalDateTime getEndTime() {
@@ -122,5 +118,17 @@ public class Auction {
             this.bids.add(bid);
             notifyObservers();
         }
+    }
+
+    public synchronized boolean isCreated() {
+        return this.status == Status.RUNNING;
+    }
+
+    public synchronized boolean isRunning() {
+        return this.status == Status.RUNNING;
+    }
+
+    public synchronized boolean isTerminated() {
+        return this.status == Status.TERMINATED;
     }
 }
