@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class AuctionSystem {
-    public static AuctionSystem instance;
+    private static AuctionSystem instance;
 
     private Catalogue catalogue;
     private List<User> users;
