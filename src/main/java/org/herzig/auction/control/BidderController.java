@@ -9,7 +9,12 @@ import javafx.scene.control.TextField;
 import org.herzig.auction.model.*;
 import org.herzig.auction.model.robot.Eager;
 import org.herzig.auction.model.robot.Robot;
+import org.herzig.auction.model.robot.RobotBidder;
 import org.herzig.auction.model.robot.Strategy;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class BidderController extends BaseController {
     private Auction auction;
@@ -44,8 +49,11 @@ public class BidderController extends BaseController {
     Button stopBtn;
 
     public void initialize() {
-        // todo: set other robots here
-        this.strategyCB.setItems(FXCollections.observableArrayList("Eager"));
+        List<String> list = new ArrayList<>();
+        for(RobotBidder robot : RobotBidder.values()){
+            list.add(robot.getName());
+        }
+        this.strategyCB.setItems(FXCollections.observableArrayList(list));
         this.strategyCB.getSelectionModel().select(0);
         this.stopBtn.setDisable(true);
     }
@@ -80,19 +88,13 @@ public class BidderController extends BaseController {
 
     @FXML
     public void startRobot() {
-        Strategy strategy = null;
-        // todo: implement all robot strategies
-        switch (this.strategyCB.getSelectionModel().getSelectedItem()) {
-            case "Eager":
-                strategy = new Eager();
-                break;
-        }
-        if(strategy != null) {
-            this.robot = new Robot(this.bidder, this.auction, strategy);
-            this.robot.start();
-            this.startBtn.setDisable(true);
-            this.stopBtn.setDisable(false);
-        }
+        Strategy strategy = Objects.requireNonNull(RobotBidder.getRobotBidder(this.strategyCB.getSelectionModel()
+                .getSelectedItem()))
+                .getStrategy();
+        this.robot = new Robot(this.bidder, this.auction, strategy);
+        this.robot.start();
+        this.startBtn.setDisable(true);
+        this.stopBtn.setDisable(false);
     }
 
     @FXML
@@ -100,7 +102,7 @@ public class BidderController extends BaseController {
         if (this.robot != null) {
             this.robot.stop();
             this.robot = null;
-            this.stopBtn.setDisable(false);
+            this.startBtn.setDisable(false);
             this.stopBtn.setDisable(true);
         }
     }
