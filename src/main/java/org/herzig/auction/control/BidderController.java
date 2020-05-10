@@ -23,7 +23,7 @@ public class BidderController extends BaseController {
     TextField amountTF;
 
     @FXML
-    Button placeBitBtn;
+    Button placeBidBtn;
 
     @FXML
     Label messageLbl;
@@ -110,7 +110,7 @@ public class BidderController extends BaseController {
         if(auction.getStatus() == Auction.Status.RUNNING) {
             updateCurrentBidLbl();
         } else if(auction.getStatus() == Auction.Status.TERMINATED) {
-            this.placeBitBtn.setDisable(true);
+            this.placeBidBtn.setDisable(true);
             if(this.robot != null) {
                 this.robot.stop();
                 this.robot = null;
